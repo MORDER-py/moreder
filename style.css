@@ -1,0 +1,55 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+.wheel-container {
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.wheel {
+    width: 300px;
+    height: 300px;
+    border: 10px solid #4CAF50;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f1f1f1;
+    position: relative;
+    margin: 0 auto;
+}
+
+.wheel span {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+.start-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.start-btn:active {
+    background-color: #45a049;
+}
+
+.message {
+    font-size: 18px;
+    margin-top: 20px;
+}

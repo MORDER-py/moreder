@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لعبة عجلة الأسماء</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="wheel-container">
+        <div class="wheel"></div>
+        <button class="start-btn" onclick="spinWheel()">ابدأ العجلة</button>
+        <div class="message"></div>
+    </div>
+
+    <!-- تضمين كود JavaScript للتحكم في الكاميرا -->
+    <script src="{{ url_for('static', filename='js/camera.js') }}"></script>
+    <script>
+        // قائمة الأسماء
+        const names = ["أحمد", "محمد", "سارة", "مريم", "حسن", "دينا", "طارق"];
+
+        // وظيفة لإضافة الأسماء إلى العجلة
+        function addNamesToWheel() {
+            const wheel = document.querySelector('.wheel');
+            wheel.innerHTML = ''; // مسح العجلة الحالية
+
+            names.forEach((name, index) => {
+                let angle = (360 / names.length) * index;
+                let span = document.createElement('span');
+                span.style.transform = `rotate(${angle}deg) translateY(-120px)`;
+                span.innerText = name;
+                wheel.appendChild(span);
+            });
+        }
+
+        // وظيفة لتدوير العجلة واختيار اسم عشوائي
+        function spinWheel() {
+            const wheel = document.querySelector('.wheel');
+            const randomDegree = Math.floor(Math.random() * 360) + 3600; // تدوير العجلة 10 مرات عشوائيًا
+            wheel.style.transition = "transform 4s ease-out";
+            wheel.style.transform = `rotate(${randomDegree}deg)`;
+            
+            setTimeout(() => {
+                const winnerIndex = Math.floor((randomDegree % 360) / (360 / names.length));
+                const winner = names[winnerIndex];
+                document.querySelector('.message').innerText = `الاسم الفائز هو: ${winner}`;
+            }, 4000); // بعد 4 ثوانٍ يظهر الاسم الفائز
+        }
+
+        // التأكد من أن الأسماء تم إضافتها للعجلة عند تحميل الصفحة
+        window.onload = function() {
+            addNamesToWheel();
+        };
+    </script>
+</body>
+</html>
